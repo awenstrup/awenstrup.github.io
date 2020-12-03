@@ -1,0 +1,298 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>IOController &mdash; hardware_in_the_loop 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="ECU" href="ecu.html" />
+    <link rel="prev" title="CANController" href="cancontroller.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> hardware_in_the_loop
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="roadkillharness.html">RoadkillHarness</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cancontroller.html">CANController</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">IOController</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ecu.html">ECU</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">hardware_in_the_loop</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>IOController</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/modules/iocontroller.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-modules.iocontroller">
+<span id="iocontroller"></span><h1>IOController<a class="headerlink" href="#module-modules.iocontroller" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="modules.iocontroller.IOController">
+<em class="property">class </em><code class="sig-prename descclassname">modules.iocontroller.</code><code class="sig-name descname">IOController</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pin_info_path</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">serial_path</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="headerlink" href="#modules.iocontroller.IOController" title="Permalink to this definition">¶</a></dt>
+<dd><p>High level python object to interface with hardware.</p>
+<p>Used to set analog and digital pins for simulation.</p>
+<p><a class="reference external" href="https://docs.olinelectricmotorsports.com/display/AE/IO+Controller">Confluence</a></p>
+<dl class="py method">
+<dt id="modules.iocontroller.IOController.get_state">
+<code class="sig-name descname">get_state</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pin</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; Union<span class="p">[</span>int<span class="p">, </span>float<span class="p">]</span><a class="headerlink" href="#modules.iocontroller.IOController.get_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Request a hardware state from the HitL system.</p>
+<dl>
+<dt>Args:</dt><dd><p>pin (<cite>str</cite>): The name of the state we want to get (e.x. “THROTTLE_POT_1”, NOT 11)</p>
+</dd>
+<dt>Returns:</dt><dd><p><cite>int</cite> or <cite>float</cite>: The value of the requested state</p>
+</dd>
+<dt>Message format:</dt><dd><p>2 bytes (all big endian):</p>
+<dl class="simple">
+<dt>Byte 0:</dt><dd><ul class="simple">
+<li><p>Bit 0: 0 (reserved bit)</p></li>
+<li><p>Bit 1: 0 (indicates a get request)</p></li>
+<li><p>Bits 2-7: Board number of the signal we want to get (0-63)</p></li>
+</ul>
+</dd>
+<dt>Byte 1:</dt><dd><ul class="simple">
+<li><p>Bits 0-7: Pin number of the signal we want to get</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="modules.iocontroller.IOController.read_pin_info">
+<code class="sig-name descname">read_pin_info</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; dict<a class="headerlink" href="#modules.iocontroller.IOController.read_pin_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read in the pin address information, given a path to a .csv file</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>path (str): The path to the .csv file containing pin information (see 
+<a class="reference external" href="https://github.com/olin-electric-motorsports/AdvancedResearch/tree/main/hardware_in_the_loop/software">software readme</a> 
+or 
+<a class="reference external" href="https://docs.google.com/spreadsheets/d/15hpe0DXfQto9N2hawawvfeHTE1sq-UT7sgDl__hCTZ4/edit?usp=sharing">google docs</a> 
+for details)</p>
+</dd>
+<dt>Returns:</dt><dd><p>dict: A dictionary of (str: dict) pairs</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="modules.iocontroller.IOController.set_state">
+<code class="sig-name descname">set_state</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pin</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#modules.iocontroller.IOController.set_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the value of an IO pin in the HitL system</p>
+<dl>
+<dt>Args:</dt><dd><p>pin (<cite>str</cite>): The name of the pin to update (e.x. THROTTLE_PEDAL_1)</p>
+<p>value (<cite>int</cite> or <cite>float</cite>): The value to set the pin to (e.x. 2.5)
+0 or 1 for digital, volts for analog</p>
+</dd>
+<dt>Returns:</dt><dd><p>None</p>
+</dd>
+<dt>Message format:</dt><dd><p>4 bytes (all big endian)</p>
+<dl class="simple">
+<dt>Byte 0:</dt><dd><ul class="simple">
+<li><p>Bit 0: 0 (reserved bit)</p></li>
+<li><p>Bit 1: 1 (indicates a set request)</p></li>
+<li><p>Bits 2-7: Board number of the signal we want to get (0-63)</p></li>
+</ul>
+</dd>
+<dt>Byte 1:</dt><dd><ul class="simple">
+<li><p>Bits 0-7: Pin number of the signal we want to set</p></li>
+</ul>
+</dd>
+<dt>Bytes 2-3:</dt><dd><ul class="simple">
+<li><p>Bits 0-15: 16 bit precision value to set, with 0% = 0x0000 and  100% = 0xFFFF</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ecu.html" class="btn btn-neutral float-right" title="ECU" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="cancontroller.html" class="btn btn-neutral float-left" title="CANController" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Alex Wenstrup
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

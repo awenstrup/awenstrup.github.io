@@ -1,0 +1,4 @@
+CANController
+=============
+.. automodule:: modules.cancontroller
+   :members:
