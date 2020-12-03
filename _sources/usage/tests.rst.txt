@@ -10,7 +10,7 @@ While the shell is certainly fun, this system is really built to run tests. We u
 
 This will run every single test in the ``tests`` directory, which might take a while. Pytest has number of ways to specify which tests to run; most commonly, we use pytest markers to specify this. For example, to run only unit tests that don't require any hardware setup, run::
 
-   # pytest -m "unit and soft"
+   $ pytest -m "unit and soft"
 
 To generate a ``.html`` test report, use the ``--report=path`` option like this::
 
