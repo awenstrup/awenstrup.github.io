@@ -1,0 +1,263 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Tests &mdash; hardware_in_the_loop 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="RoadkillHarness" href="../modules/roadkillharness.html" />
+    <link rel="prev" title="The Shell" href="shell.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> hardware_in_the_loop
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../setup.html">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shell.html">The Shell</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#running-tests">Running Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#writing-tests">Writing tests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/roadkillharness.html">RoadkillHarness</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/cancontroller.html">CANController</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/iocontroller.html">IOController</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/ecu.html">ECU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/utils.html">Utils</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">hardware_in_the_loop</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Tests</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/usage/tests.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="tests">
+<h1>Tests<a class="headerlink" href="#tests" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="running-tests">
+<h2>Running Tests<a class="headerlink" href="#running-tests" title="Permalink to this headline">¶</a></h2>
+<p>While the shell is certainly fun, this system is really built to run tests. We use <a class="reference external" href="https://docs.pytest.org/en/stable/">pytest</a> for testing, which enables a lot of very powerful (but sometimes confusing) functionality. The simplest way to run tests is by navigating to the <code class="docutils literal notranslate"><span class="pre">tests</span></code> directory and running:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pytest
+</pre></div>
+</div>
+<p>This will run every single test in the <code class="docutils literal notranslate"><span class="pre">tests</span></code> directory, which might take a while. Pytest has number of ways to specify which tests to run; most commonly, we use pytest markers to specify this. For example, to run only unit tests that don’t require any hardware setup, run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># pytest -m &quot;unit and soft&quot;</span>
+</pre></div>
+</div>
+<p>To generate a <code class="docutils literal notranslate"><span class="pre">.html</span></code> test report, use the <code class="docutils literal notranslate"><span class="pre">--report=path</span></code> option like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pytest --report=report.html
+</pre></div>
+</div>
+<p>For more information on pytest, see the <a class="reference external" href="https://docs.pytest.org/en/stable/">pytest docs</a>.</p>
+</div>
+<div class="section" id="writing-tests">
+<h2>Writing tests<a class="headerlink" href="#writing-tests" title="Permalink to this headline">¶</a></h2>
+<p>This entire repository is built to make writing tests as easy as possible. That said, there is still a learning curve, so it may take a little bit to get the hang of it.</p>
+<p>Most tests will consist of 3 main things:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">get</span></code> statements</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">set</span></code> statements</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">assert</span></code> statements</p></li>
+</ul>
+<p>For example, you might want to set both throttle potentiometers to output 2.5 volts, get the torque request from the CAN bus, and assert that the requested torque is between 100 and 150 Nm. The best way to demonstrate this is with an example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_throttle</span><span class="p">(</span><span class="n">harness</span><span class="p">):</span>
+   <span class="n">harness</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="s2">&quot;THROTTLE_POT_1&quot;</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">)</span>
+   <span class="n">harness</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="s2">&quot;THROTTLE_POT_2&quot;</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">)</span>
+
+   <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># We do this to give the hardware time to react</span>
+
+   <span class="n">torque</span> <span class="o">=</span> <span class="n">harness</span><span class="o">.</span><span class="n">throttle</span><span class="o">.</span><span class="n">get_state</span><span class="p">(</span><span class="s2">&quot;mcTorqueRequest&quot;</span><span class="p">)</span>
+   <span class="k">assert</span> <span class="mi">100</span> <span class="o">&lt;</span> <span class="n">torque</span> <span class="o">&lt;</span> <span class="mi">150</span>
+</pre></div>
+</div>
+<p>You might notice that this test requires a parameter, <code class="docutils literal notranslate"><span class="pre">harness</span></code>. We have already created a pytest fixture <code class="docutils literal notranslate"><span class="pre">harness</span></code>, and pytest knows to automatically deliver a harness to every test that requires one; you don’t need to do anything! To learn more about pytest fixtures, read the <a class="reference external" href="https://docs.pytest.org/en/stable/fixture.html#fixture">pytest fixture docs</a>.</p>
+<p>If this doesn’t make sense, a good way to start is always to copy and paste some other test (probably not a unit test), and edit from there. If you still have questions, please feel free to reach out to <a class="reference external" href="mailto:awenstrup&#37;&#52;&#48;olin&#46;edu">awenstrup<span>&#64;</span>olin<span>&#46;</span>edu</a> or anyone else on the HITL subteam.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../modules/roadkillharness.html" class="btn btn-neutral float-right" title="RoadkillHarness" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="shell.html" class="btn btn-neutral float-left" title="The Shell" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Alex Wenstrup
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
