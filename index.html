@@ -87,6 +87,7 @@
 <li class="toctree-l1"><a class="reference internal" href="modules/cancontroller.html">CANController</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules/iocontroller.html">IOController</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules/ecu.html">ECU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/utils.html">Utils</a></li>
 </ul>
 
             
@@ -157,18 +158,172 @@
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="modules/roadkillharness.html">RoadkillHarness</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/cancontroller.html">CANController</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/iocontroller.html">IOController</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/ecu.html">ECU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/roadkillharness.html">RoadkillHarness</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modules/roadkillharness.html#module-modules.roadkillharness">API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules/cancontroller.html">CANController</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modules/cancontroller.html#module-modules.cancontroller">API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules/iocontroller.html">IOController</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modules/iocontroller.html#module-modules.iocontroller">API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/iocontroller.html#writing-pin-config-files">Writing pin config files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/iocontroller.html#setting-signals-simultaneously">Setting signals simultaneously</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules/ecu.html">ECU</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modules/ecu.html#module-modules.ecu">API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules/utils.html">Utils</a></li>
 </ul>
 </div>
 </div>
 <div class="section" id="getting-started">
 <h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
-<p>I haven’t written the getting started page for the docs page yet,
-but you can find setup instructions on the project readme
-<a class="reference external" href="https://github.com/olin-electric-motorsports/AdvancedResearch/tree/main/hardware_in_the_loop/software">here</a></p>
+<div class="section" id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
+<p>DISCLAIMER: This process requires root permissions to edit some files.</p>
+<div class="section" id="prerequisites">
+<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>A linux system. Due to the hardware interfaces that this project relies on, I STRONGLY recommend against using a virtual machine; this project will not work out of the box on a VM.</p></li>
+<li><p>A python environment on your computer. At the very least, you _should_ be able to use the version of python that came installed with your operating system, but I recommend setting up <a class="reference external" href="https://realpython.com/intro-to-pyenv/">pyenv</a> with virtual environments to isolate this project’s dependencies.</p></li>
+</ul>
+</div>
+<div class="section" id="installation">
+<h3>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic">
+<li><p>If you haven’t yet, clone this repository onto your computer:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/olin-electric-motorsports/AdvancedResearch.git
+</pre></div>
+</div>
+</li>
+<li><p>To perform software installation and setup, navigate to the software directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd AdvancedResearch/hardware_in_the_loop/software
+</pre></div>
+</div>
+</li>
+<li><p>(Optional) If you want to setup a virtual environment for this project (I recommend it), now is the time. If you don’t know how to do this, read <a class="reference external" href="https://realpython.com/intro-to-pyenv/">here</a></p></li>
+<li><p>Use pip to install the project and its dependencies on your computer. If you usually use <code class="docutils literal notranslate"><span class="pre">pip3</span></code> to invoke <code class="docutils literal notranslate"><span class="pre">pip</span></code>, use that instead; as long as the actual version of <code class="docutils literal notranslate"><span class="pre">pip</span></code> is &gt;3.6.0, you should be fine.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install -e .
+</pre></div>
+</div>
+</li>
+<li><p>Now that the software is installed, it’s time to configure hardware. For now, the only hardware we can connect to is an arduino. Go ahead and plug that in now. If you don’t have an arduino, thats fine; you just won’t be able to run all unit tests.</p></li>
+<li><p>Now that your arduino is plugged in, verify that your computer recognizes it with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>`$ lsusb`
+</pre></div>
+</div>
+</li>
+</ol>
+<p>You should see a your arduino listed as an option. If you don’t <strong>do not</strong> proceed to step 6; try unplugging it and plugging it in again.</p>
+<ol class="arabic" start="7">
+<li><p>Navigate to our <code class="docutils literal notranslate"><span class="pre">scripts</span></code> directory and run our hardware setup script:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd scripts &amp;&amp; sudo python hardware_setup.py
+</pre></div>
+</div>
+</li>
+</ol>
+<p>This script creates a udev rule which generates a permanent symbolic link to your arduino at <code class="docutils literal notranslate"><span class="pre">/dev/arduino</span></code>, so we never need to guess where to find it. The software defaults to these symbolic links if they are not specified in <code class="docutils literal notranslate"><span class="pre">config.ini</span></code>.</p>
+<ol class="arabic" start="8">
+<li><p>Restart your computer.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo shutdown -r now
+</pre></div>
+</div>
+</li>
+</ol>
+<p>It is generally recommended to restart to reload udev rules. If you’re in a rush, you can try:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo udevadm control --reload-rules
+</pre></div>
+</div>
+<p>but I generally recommend restarting just to be sure.</p>
+</div>
+<div class="section" id="common-issues">
+<h3>Common issues<a class="headerlink" href="#common-issues" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p><strong>Wrong/mismatched python versions</strong></p>
+<blockquote>
+<div><p>If you’re having trouble using pip or python (especially when running with <code class="docutils literal notranslate"><span class="pre">sudo</span></code>), make sure you are using the right python version with <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">which</span> <span class="pre">python</span></code> or <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">which</span> <span class="pre">python3</span></code>. When I was setting this up, I noticed I was using the expected python interpreter when I called <code class="docutils literal notranslate"><span class="pre">python3</span></code> or <code class="docutils literal notranslate"><span class="pre">pip3</span></code>, but as soon as I ran <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">python3</span></code> or <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">pip3</span></code>, the python version was different. If this is confusing and you don’t know how to resolve it, please just follow the virtual environment tutorial I linked above to setup python &gt;=3.7 on your machine.</p>
+</div></blockquote>
+</li>
+<li><p><strong>Missing hardware permissions</strong></p>
+<blockquote>
+<div><p>If the <cite>hardware_setup.py</cite> script is returning a <code class="docutils literal notranslate"><span class="pre">no</span> <span class="pre">langid</span></code> error or similar, it is probably because your user doesn’t have permission to get certain information from the USB device. Try running this command with <code class="docutils literal notranslate"><span class="pre">sudo</span></code> (and, as noted above, make sure you are using the expected python version).</p>
+</div></blockquote>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="the-shell">
+<h3>The Shell<a class="headerlink" href="#the-shell" title="Permalink to this headline">¶</a></h3>
+<p>We haven’t built out a command line interface for interacting with our HITL system yet, but we think that the python shell works great! Just run the following commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python
+&gt;&gt;&gt; from modules.roadkillharness import RoadkillHarness
+&gt;&gt;&gt; harness = RoadkillHarness()
+</pre></div>
+</div>
+<p>And thats it! You’ve created a RoadkillHarness object that you can use to control the HITL system. Here are some things you can try:</p>
+<ul>
+<li><p><cite>Getting a CAN state from the car</cite></p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span> <span class="pre">harness.can.get_state(&quot;signalName&quot;)</span></code></p>
+</div></blockquote>
+</li>
+<li><p><cite>Setting a voltage on the car</cite></p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span> <span class="pre">harness.io.set_state(&quot;SIGNAL_NAME&quot;,</span> <span class="pre">&quot;2.5&quot;)</span></code></p>
+</div></blockquote>
+</li>
+</ul>
+<p>If you want to get to know the system more, keep reading, reach out to anyone on the HITL subteam for help, or check out the resources section below.</p>
+</div>
+<div class="section" id="running-tests">
+<h3>Running Tests<a class="headerlink" href="#running-tests" title="Permalink to this headline">¶</a></h3>
+<p>While the shell is certainly fun, this system is really built to run tests. We use <a class="reference external" href="https://docs.pytest.org/en/stable/">pytest</a> for testing, which enables a lot of very powerful (but sometimes confusing) functionality. The simplest way to run tests is by navigating to the <code class="docutils literal notranslate"><span class="pre">tests</span></code> directory and running:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pytest
+</pre></div>
+</div>
+<p>This will run every single test in the <code class="docutils literal notranslate"><span class="pre">tests</span></code> directory, which might take a while. To run only a subset of those tests you can run the same command from a folder. For example, to run only unit tests, run <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">pytest</span> <span class="pre">unit</span></code> from the <code class="docutils literal notranslate"><span class="pre">tests</span></code> directory, or <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">pytest</span></code> from the <code class="docutils literal notranslate"><span class="pre">tests/unit</span></code> directory.</p>
+<p>To run an even smaller batch of tests, you can specify a file name, like <code class="docutils literal notranslate"><span class="pre">pytest</span> <span class="pre">unit/test_io.py</span></code>. This will run only the tests in that file.</p>
+<p>Finally, to run a single test, you can use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pytest unit/test_io.py::test_read_io_file
+</pre></div>
+</div>
+<p>Currently, none of our tests use pytest markers, but we plan on updating that in the future.</p>
+<p>To generate a <code class="docutils literal notranslate"><span class="pre">.html</span></code> test report, use the <code class="docutils literal notranslate"><span class="pre">--report=path</span></code> option like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pytest --report=report.html
+</pre></div>
+</div>
+<p>For more information on pytest, see the <a class="reference external" href="https://docs.pytest.org/en/stable/">pytest docs</a>.</p>
+</div>
+<div class="section" id="writing-tests">
+<h3>Writing tests<a class="headerlink" href="#writing-tests" title="Permalink to this headline">¶</a></h3>
+<p>This entire repository is built to make writing tests as easy as possible. That said, there is still a learning curve, so it may take a little bit to get the hang of it.</p>
+<p>Most tests will consist of 3 main things:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">get</span></code> statements</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">set</span></code> statements</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">assert</span></code> statements</p></li>
+</ul>
+<p>For example, you might want to set both throttle potentiometers to output 2.5 volts, get the torque request from the CAN bus, and assert that the requested torque is between 100 and 150 Nm. The best way to demonstrate this is with an example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_throttle</span><span class="p">(</span><span class="n">harness</span><span class="p">):</span>
+   <span class="n">harness</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="s2">&quot;THROTTLE_POT_1&quot;</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">)</span>
+   <span class="n">harness</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="s2">&quot;THROTTLE_POT_2&quot;</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">)</span>
+
+   <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># We do this to give the hardware time to react</span>
+
+   <span class="n">torque</span> <span class="o">=</span> <span class="n">harness</span><span class="o">.</span><span class="n">throttle</span><span class="o">.</span><span class="n">get_state</span><span class="p">(</span><span class="s2">&quot;mcTorqueRequest&quot;</span><span class="p">)</span>
+   <span class="k">assert</span> <span class="mi">100</span> <span class="o">&lt;</span> <span class="n">torque</span> <span class="o">&lt;</span> <span class="mi">150</span>
+</pre></div>
+</div>
+<p>You might notice that this test requires a parameter, <code class="docutils literal notranslate"><span class="pre">harness</span></code>. We have already created a pytest fixture <code class="docutils literal notranslate"><span class="pre">harness</span></code>, and pytest knows to automatically deliver a harness to every test that requires one; you don’t need to do anything! To learn more about pytest fixtures, read the <a class="reference external" href="https://docs.pytest.org/en/stable/fixture.html#fixture">pytest fixture docs</a>.</p>
+<p>If this doesn’t make sense, a good way to start is always to copy and paste some other test (probably not a unit test), and edit from there. If you still have questions, please feel free to reach out to <a class="reference external" href="mailto:awenstrup&#37;&#52;&#48;olin&#46;edu">awenstrup<span>&#64;</span>olin<span>&#46;</span>edu</a> or anyone else on the HITL subteam.</p>
+</div>
+</div>
 </div>
 <div class="section" id="indices-and-tables">
 <h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>

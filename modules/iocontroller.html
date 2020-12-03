@@ -86,7 +86,12 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="roadkillharness.html">RoadkillHarness</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cancontroller.html">CANController</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">IOController</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">IOController</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-modules.iocontroller">API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#writing-pin-config-files">Writing pin config files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-signals-simultaneously">Setting signals simultaneously</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="ecu.html">ECU</a></li>
 </ul>
 
@@ -153,23 +158,34 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-modules.iocontroller">
-<span id="iocontroller"></span><h1>IOController<a class="headerlink" href="#module-modules.iocontroller" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="iocontroller">
+<h1>IOController<a class="headerlink" href="#iocontroller" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-modules.iocontroller">
+<span id="api"></span><h2>API<a class="headerlink" href="#module-modules.iocontroller" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt id="modules.iocontroller.IOController">
 <em class="property">class </em><code class="sig-prename descclassname">modules.iocontroller.</code><code class="sig-name descname">IOController</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pin_info_path</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">serial_path</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="headerlink" href="#modules.iocontroller.IOController" title="Permalink to this definition">¶</a></dt>
 <dd><p>High level python object to interface with hardware.</p>
-<p>Used to set analog and digital pins for simulation.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">IOController</span></code> is used to set analog and digital pins for simulation. It
+is configured using a <code class="docutils literal notranslate"><span class="pre">.csv</span></code> file, documented below. It allows a user to interact
+with our custom hardware by getting and setting digital and analog states.</p>
 <p><a class="reference external" href="https://docs.olinelectricmotorsports.com/display/AE/IO+Controller">Confluence</a></p>
 <dl class="py method">
 <dt id="modules.iocontroller.IOController.get_state">
 <code class="sig-name descname">get_state</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pin</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; Union<span class="p">[</span>int<span class="p">, </span>float<span class="p">]</span><a class="headerlink" href="#modules.iocontroller.IOController.get_state" title="Permalink to this definition">¶</a></dt>
 <dd><p>Request a hardware state from the HitL system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>pin</strong> (<em>str</em>) – The name of the state we want to get (e.x. “THROTTLE_POT_1”, NOT 11)</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Union[int, float]</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The value of the requested state. If the signal is analog, returns a <code class="docutils literal notranslate"><span class="pre">float</span></code>, otherwise an <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
+</dd>
+</dl>
 <dl>
-<dt>Args:</dt><dd><p>pin (<cite>str</cite>): The name of the state we want to get (e.x. “THROTTLE_POT_1”, NOT 11)</p>
-</dd>
-<dt>Returns:</dt><dd><p><cite>int</cite> or <cite>float</cite>: The value of the requested state</p>
-</dd>
 <dt>Message format:</dt><dd><p>2 bytes (all big endian):</p>
 <dl class="simple">
 <dt>Byte 0:</dt><dd><ul class="simple">
@@ -188,32 +204,22 @@
 </dd></dl>
 
 <dl class="py method">
-<dt id="modules.iocontroller.IOController.read_pin_info">
-<code class="sig-name descname">read_pin_info</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; dict<a class="headerlink" href="#modules.iocontroller.IOController.read_pin_info" title="Permalink to this definition">¶</a></dt>
-<dd><p>Read in the pin address information, given a path to a .csv file</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>path (str): The path to the .csv file containing pin information (see 
-<a class="reference external" href="https://github.com/olin-electric-motorsports/AdvancedResearch/tree/main/hardware_in_the_loop/software">software readme</a> 
-or 
-<a class="reference external" href="https://docs.google.com/spreadsheets/d/15hpe0DXfQto9N2hawawvfeHTE1sq-UT7sgDl__hCTZ4/edit?usp=sharing">google docs</a> 
-for details)</p>
-</dd>
-<dt>Returns:</dt><dd><p>dict: A dictionary of (str: dict) pairs</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
 <dt id="modules.iocontroller.IOController.set_state">
 <code class="sig-name descname">set_state</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pin</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#modules.iocontroller.IOController.set_state" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the value of an IO pin in the HitL system</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pin</strong> (<em>str</em>) – The name of the pin to update (e.x. THROTTLE_PEDAL_1)</p></li>
+<li><p><strong>value</strong> (<em>Union</em><em>[</em><em>int</em><em>,</em><em>float</em><em>]</em>) – The value to set the pin to (e.x. 2.5).
+Use 0 or 1 for digital, floating point voltage number for analog</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
 <dl>
-<dt>Args:</dt><dd><p>pin (<cite>str</cite>): The name of the pin to update (e.x. THROTTLE_PEDAL_1)</p>
-<p>value (<cite>int</cite> or <cite>float</cite>): The value to set the pin to (e.x. 2.5)
-0 or 1 for digital, volts for analog</p>
-</dd>
-<dt>Returns:</dt><dd><p>None</p>
-</dd>
 <dt>Message format:</dt><dd><p>4 bytes (all big endian)</p>
 <dl class="simple">
 <dt>Byte 0:</dt><dd><ul class="simple">
@@ -237,6 +243,40 @@ for details)</p>
 
 </dd></dl>
 
+</div>
+<div class="section" id="writing-pin-config-files">
+<h2>Writing pin config files<a class="headerlink" href="#writing-pin-config-files" title="Permalink to this headline">¶</a></h2>
+<p>Pin config files dictate which pins are connected to what hardware, and what names to use for each pin.</p>
+<p>Most of the code in this repository relies on standards, like CAN, pytest, and .dbc files. There is one big exception to this: the interface between a laptop and the HitL hardware. We use a USB-A to USB-B connector to connect (simple enough), but the message format, and format of the file that documents HitL I/O, is proprietary. In building this file and message format, we prioritized for simplicity and usability over efficiency; the traffic through the USB cable is relatively low.</p>
+<p>You’ll see that <code class="docutils literal notranslate"><span class="pre">artifacts/pin_info.csv</span></code> has 9 columns. The <code class="docutils literal notranslate"><span class="pre">IOController</span></code> python object parses this file, and expects to see ALL 9 COLUMNS IN THE CORRECT ORDER. It’s okay if a some column values are blank (like <code class="docutils literal notranslate"><span class="pre">address</span></code> or <code class="docutils literal notranslate"><span class="pre">notes</span></code>), but make sure there are 8 commas in every line (separating the 9 values). The most important values are explained below.</p>
+<ul class="simple">
+<li><p><strong>Board:</strong> The board number (0-63) specifies which expansion board the signal is sent/received to/from. This should be the same as the I2C address of the expansion board.</p></li>
+<li><p><strong>Pin Number:</strong> The pin number (1-255) specifies which pin on the expansion board to use. Each expansion board’s firmware will contain a mapping from these integers to individual pins. To check what this is, check <cite>../firmware</cite></p></li>
+<li><p><strong>Name:</strong> This is the name of the pin. You will use this name later any time you want to get or set a signal on that pin. We usually name pins with <code class="docutils literal notranslate"><span class="pre">SCREAMING_SNAKE_CASE</span></code></p></li>
+<li><p><strong>Type:</strong> The supported signals (right now) are analog and digital. Analog signals represent voltages; some of our expansion boards have DACs (digital to analog converters) to output these voltages and ADCs (analog to digital converters) to read them in. Digital signals are “slow”, in that you can set a pin to be high or low, but we don’t currently support digital communication protocols like SPI, I2C, or PWM.</p></li>
+<li><p><strong>Min/Max:</strong> These two values represent the minimum and maximum values for each pin. For digital signals, we conventionally use 0 and 1 (rather than 0 and the nominal voltage of the system), but it doesn’t really matter. For analog values, min and max are much more important. _Make sure these represent the low and high rails of the DAC or ADC connected to the pin._</p></li>
+</ul>
+</div>
+<div class="section" id="setting-signals-simultaneously">
+<h2>Setting signals simultaneously<a class="headerlink" href="#setting-signals-simultaneously" title="Permalink to this headline">¶</a></h2>
+<p>Under normal use, the <code class="docutils literal notranslate"><span class="pre">IOController</span></code> sets signals sequentially, with a small delay between each signal.
+If that is an issue, the <code class="docutils literal notranslate"><span class="pre">IOController</span></code> provides an elegant way around this. The <code class="docutils literal notranslate"><span class="pre">IOController</span></code> uses a context
+manager to send a special signal to the hardware to indicate signals should be set simultaneously.</p>
+<p>By using a context manager to do this, the code stays elegant. Remember, setting signals normally might look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">io</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="s2">&quot;THROTTLE_POT_1&quot;</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">)</span>
+<span class="n">io</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="s2">&quot;THROTTLE_POT_2&quot;</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To set the signals at the same time, you can instead use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">io</span><span class="p">:</span>
+   <span class="n">io</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="s2">&quot;THROTTLE_POT_1&quot;</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">)</span>
+   <span class="n">io</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="s2">&quot;THROTTLE_POT_2&quot;</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If you’re curious what this is doing in the backend, the <code class="docutils literal notranslate"><span class="pre">IOController</span></code> sends a 0xFF byte before the message. The hardware
+sees this and knows to wait, reading set requests until another 0xFF byte is received (as the first byte of a message). Only
+once that second 0xFF byte is sent does the hardware set any signals.</p>
+</div>
 </div>
 
 
