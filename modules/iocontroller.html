@@ -84,6 +84,10 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../setup.html">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/shell.html">The Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/tests.html">Tests</a></li>
 <li class="toctree-l1"><a class="reference internal" href="roadkillharness.html">RoadkillHarness</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cancontroller.html">CANController</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">IOController</a><ul>
@@ -93,6 +97,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ecu.html">ECU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">Utils</a></li>
 </ul>
 
             
@@ -170,6 +175,16 @@
 is configured using a <code class="docutils literal notranslate"><span class="pre">.csv</span></code> file, documented below. It allows a user to interact
 with our custom hardware by getting and setting digital and analog states.</p>
 <p><a class="reference external" href="https://docs.olinelectricmotorsports.com/display/AE/IO+Controller">Confluence</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pin_info_path</strong> (<em>str</em>) – The path to the pin_info file (should be stored in <code class="docutils literal notranslate"><span class="pre">artifacts</span></code>).</p></li>
+<li><p><strong>serial_path</strong> (<em>str</em>) – The path to the serial device you are connecting to. If you are using
+an arduino and have run <code class="docutils literal notranslate"><span class="pre">scripts/hardware_setup.py</span></code>, then you should be able to use
+<code class="docutils literal notranslate"><span class="pre">/dev/arduino</span></code>. Otherwise, you might have to look for your device with <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">ls</span> <span class="pre">/dev/*</span></code></p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py method">
 <dt id="modules.iocontroller.IOController.get_state">
 <code class="sig-name descname">get_state</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pin</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; Union<span class="p">[</span>int<span class="p">, </span>float<span class="p">]</span><a class="headerlink" href="#modules.iocontroller.IOController.get_state" title="Permalink to this definition">¶</a></dt>

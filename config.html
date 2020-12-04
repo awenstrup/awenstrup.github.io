@@ -1,0 +1,264 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Configuration &mdash; hardware_in_the_loop 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="The Shell" href="usage/shell.html" />
+    <link rel="prev" title="Setup" href="setup.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> hardware_in_the_loop
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Setup</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#logging">LOGGING</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hardware">HARDWARE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#paths">PATHS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="usage/shell.html">The Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage/tests.html">Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/roadkillharness.html">RoadkillHarness</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/cancontroller.html">CANController</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/iocontroller.html">IOController</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/ecu.html">ECU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/utils.html">Utils</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">hardware_in_the_loop</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Configuration</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/config.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="configuration">
+<h1>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h1>
+<p>After the repository is installed and setup, a <code class="docutils literal notranslate"><span class="pre">config.ini</span></code> file should exist with a default configuration. That said, you may want/need to configure this your own preferences/needs. The <code class="docutils literal notranslate"><span class="pre">config.ini</span></code> file has 3 sections, detailed below.</p>
+<div class="section" id="logging">
+<h2>LOGGING<a class="headerlink" href="#logging" title="Permalink to this headline">¶</a></h2>
+<p>The logging sections outlines basic logging options. <strong>NOTE:</strong> <code class="docutils literal notranslate"><span class="pre">pytest</span></code> ignores these options in favor it its own <code class="docutils literal notranslate"><span class="pre">pytest.ini</span></code> file, so you may have to update those settings as well if you want to alter how <code class="docutils literal notranslate"><span class="pre">pytest</span></code> handles logging. You can also read their <a class="reference external" href="https://docs.pytest.org/en/stable/logging.html">pytest’s logging configuration documentation</a> for more information.</p>
+<p>You can also check out the <code class="docutils literal notranslate"><span class="pre">logging</span></code> documentation <a class="reference external" href="https://docs.python.org/3/library/logging.html">here</a> ; it goes over much of the information below in more detail</p>
+<dl class="simple">
+<dt>log_level:</dt><dd><p>This option specifies how verbose you want logging to be. The options are (in order) <code class="docutils literal notranslate"><span class="pre">CRITICAL</span></code>, <code class="docutils literal notranslate"><span class="pre">ERROR</span></code>, <code class="docutils literal notranslate"><span class="pre">WARNING</span></code>, <code class="docutils literal notranslate"><span class="pre">INFO</span></code> and <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code>. All logs of the specified order or higher (with <code class="docutils literal notranslate"><span class="pre">CRITICAL</span></code> being most important) will be logged.</p>
+</dd>
+<dt>log_format:</dt><dd><p>This specifies the format of each logged message. Read the logging docs for more information.</p>
+</dd>
+<dt>log_path:</dt><dd><p>Where to log to. If you only want to log to the console, use <code class="docutils literal notranslate"><span class="pre">None</span></code>. This option also supports some variables. Specifically, if you use <code class="docutils literal notranslate"><span class="pre">$LOGS</span></code>, it will be replaced with the absolute path to <code class="docutils literal notranslate"><span class="pre">artifacts/logs</span></code>. If you use <code class="docutils literal notranslate"><span class="pre">$DATETIME</span></code>, it will be replaced with the current datetime. If I’m logging to a file, I usually specify this option as <code class="docutils literal notranslate"><span class="pre">$LOGS/$DATETIME.log</span></code></p>
+</dd>
+</dl>
+</div>
+<div class="section" id="hardware">
+<h2>HARDWARE<a class="headerlink" href="#hardware" title="Permalink to this headline">¶</a></h2>
+<p>This section includes some hardware-specific options.</p>
+<dl class="simple">
+<dt>can_bitrate:</dt><dd><p>The bitrate of the CAN bus.</p>
+</dd>
+<dt>can_channel:</dt><dd><p>The name of the CAN channel, on your computer. You can see available CAN channels on your linux computer with <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">ip</span> <span class="pre">link</span> <span class="pre">show</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">can</span></code>. This parameter is required by socketcan; venture into the <a class="reference external" href="https://www.kernel.org/doc/Documentation/networking/can.txt">socketcan docs</a> if you dare. Otherwise, if you have a PCAN dongle plugged in, <code class="docutils literal notranslate"><span class="pre">can0</span></code> should work; if you don’t, you can use <code class="docutils literal notranslate"><span class="pre">vcan0</span></code> to create a fake CAN bus.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="paths">
+<h2>PATHS<a class="headerlink" href="#paths" title="Permalink to this headline">¶</a></h2>
+<p>This section should be pretty self explanatory; these are the paths the project uses to look for files and devices. These paths should be consumed by the top-level testing object (for example, a <code class="docutils literal notranslate"><span class="pre">RoadkillHarness</span></code>), and passed from there to the objects that need them (for example, an <code class="docutils literal notranslate"><span class="pre">IOController</span></code>).</p>
+<dl class="simple">
+<dt>serial_path:</dt><dd><p>The path a serial device. If you’ve run <code class="docutils literal notranslate"><span class="pre">hardware_setup.py</span></code> (and rebooted), there should be a symbolic link from your arduino to <code class="docutils literal notranslate"><span class="pre">/dev/arduino</span></code>.</p>
+</dd>
+<dt>pin_config:</dt><dd><p>The path the pin config file (relative to the <code class="docutils literal notranslate"><span class="pre">artifacts</span></code> directory). This file is documented in more detail on the <code class="docutils literal notranslate"><span class="pre">IOController</span></code> page. For example, if your pin config file is at <code class="docutils literal notranslate"><span class="pre">artifacts/pin_info.csv</span></code>, use <code class="docutils literal notranslate"><span class="pre">pin_info.csv</span></code> (NOT <code class="docutils literal notranslate"><span class="pre">~/AdvancedResearch/hardware_in_the_loop/software/artifacts/pin_info.csv</span></code>)</p>
+</dd>
+<dt>dbc_path</dt><dd><p>The path your <code class="docutils literal notranslate"><span class="pre">.dbc</span></code> file. Like <code class="docutils literal notranslate"><span class="pre">pin_config</span></code>, this is relative to the <code class="docutils literal notranslate"><span class="pre">artifacts</span></code> directory.</p>
+</dd>
+<dt>can_log_path</dt><dd><p><strong>This option is not supported yet</strong></p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="usage/shell.html" class="btn btn-neutral float-right" title="The Shell" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="setup.html" class="btn btn-neutral float-left" title="Setup" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Alex Wenstrup
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
