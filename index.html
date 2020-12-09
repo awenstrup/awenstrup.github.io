@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Welcome to hardware_in_the_loop’s documentation! &mdash; hardware_in_the_loop 0.0.1 documentation</title>
+  <title>Welcome to the OlinHITL documentation! &mdash; hardware_in_the_loop 0.0.1 documentation</title>
   
 
   
@@ -87,11 +87,11 @@
 <li class="toctree-l1"><a class="reference internal" href="config.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usage/shell.html">The Shell</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usage/tests.html">Tests</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/roadkillharness.html">RoadkillHarness</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/cancontroller.html">CANController</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/iocontroller.html">IOController</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/ecu.html">ECU</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/utils.html">Utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hitl/roadkillharness.html">RoadkillHarness</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hitl/cancontroller.html">CANController</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hitl/iocontroller.html">IOController</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hitl/ecu.html">ECU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hitl/utils.html">Utils</a></li>
 </ul>
 
             
@@ -138,7 +138,7 @@
     
       <li><a href="#" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Welcome to hardware_in_the_loop’s documentation!</li>
+      <li>Welcome to the OlinHITL documentation!</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -157,8 +157,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="welcome-to-hardware-in-the-loop-s-documentation">
-<h1>Welcome to hardware_in_the_loop’s documentation!<a class="headerlink" href="#welcome-to-hardware-in-the-loop-s-documentation" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="welcome-to-the-olinhitl-documentation">
+<h1>Welcome to the OlinHITL documentation!<a class="headerlink" href="#welcome-to-the-olinhitl-documentation" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
@@ -166,90 +166,17 @@
 <li class="toctree-l1"><a class="reference internal" href="config.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usage/shell.html">The Shell</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usage/tests.html">Tests</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/roadkillharness.html">RoadkillHarness</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/cancontroller.html">CANController</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/iocontroller.html">IOController</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/ecu.html">ECU</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/utils.html">Utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hitl/roadkillharness.html">RoadkillHarness</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hitl/cancontroller.html">CANController</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hitl/iocontroller.html">IOController</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hitl/ecu.html">ECU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hitl/utils.html">Utils</a></li>
 </ul>
 </div>
 </div>
-<div class="section" id="getting-started">
-<h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="setup">
-<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
-<p>DISCLAIMER: This process requires root permissions to edit some files.</p>
-<div class="section" id="prerequisites">
-<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><p>A linux system. Due to the hardware interfaces that this project relies on, I STRONGLY recommend against using a virtual machine; this project will not work out of the box on a VM.</p></li>
-<li><p>A python environment on your computer. At the very least, you _should_ be able to use the version of python that came installed with your operating system, but I recommend setting up <a class="reference external" href="https://realpython.com/intro-to-pyenv/">pyenv</a> with virtual environments to isolate this project’s dependencies.</p></li>
-</ul>
-</div>
-<div class="section" id="installation">
-<h3>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h3>
-<ol class="arabic">
-<li><p>If you haven’t yet, clone this repository onto your computer:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/olin-electric-motorsports/AdvancedResearch.git
-</pre></div>
-</div>
-</li>
-<li><p>To perform software installation and setup, navigate to the software directory:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd AdvancedResearch/hardware_in_the_loop/software
-</pre></div>
-</div>
-</li>
-<li><p>(Optional) If you want to setup a virtual environment for this project (I recommend it), now is the time. If you don’t know how to do this, read <a class="reference external" href="https://realpython.com/intro-to-pyenv/">here</a></p></li>
-<li><p>Use pip to install the project and its dependencies on your computer. If you usually use <code class="docutils literal notranslate"><span class="pre">pip3</span></code> to invoke <code class="docutils literal notranslate"><span class="pre">pip</span></code>, use that instead; as long as the actual version of <code class="docutils literal notranslate"><span class="pre">pip</span></code> is &gt;3.6.0, you should be fine.:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install -e .
-</pre></div>
-</div>
-</li>
-<li><p>Now that the software is installed, it’s time to configure hardware. For now, the only hardware we can connect to is an arduino. Go ahead and plug that in now. If you don’t have an arduino, thats fine; you just won’t be able to run all unit tests.</p></li>
-<li><p>Now that your arduino is plugged in, verify that your computer recognizes it with:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>`$ lsusb`
-</pre></div>
-</div>
-</li>
-</ol>
-<p>You should see a your arduino listed as an option. If you don’t <strong>do not</strong> proceed to step 6; try unplugging it and plugging it in again.</p>
-<ol class="arabic" start="7">
-<li><p>Navigate to our <code class="docutils literal notranslate"><span class="pre">scripts</span></code> directory and run our hardware setup script:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd scripts &amp;&amp; sudo python hardware_setup.py
-</pre></div>
-</div>
-</li>
-</ol>
-<p>This script creates a udev rule which generates a permanent symbolic link to your arduino at <code class="docutils literal notranslate"><span class="pre">/dev/arduino</span></code>, so we never need to guess where to find it. The software defaults to these symbolic links if they are not specified in <code class="docutils literal notranslate"><span class="pre">config.ini</span></code>.</p>
-<ol class="arabic" start="8">
-<li><p>Restart your computer.:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo shutdown -r now
-</pre></div>
-</div>
-</li>
-</ol>
-<p>It is generally recommended to restart to reload udev rules. If you’re in a rush, you can try:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo udevadm control --reload-rules
-</pre></div>
-</div>
-<p>but I generally recommend restarting just to be sure.</p>
-</div>
-<div class="section" id="common-issues">
-<h3>Common issues<a class="headerlink" href="#common-issues" title="Permalink to this headline">¶</a></h3>
-<ul>
-<li><p><strong>Wrong/mismatched python versions</strong></p>
-<blockquote>
-<div><p>If you’re having trouble using pip or python (especially when running with <code class="docutils literal notranslate"><span class="pre">sudo</span></code>), make sure you are using the right python version with <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">which</span> <span class="pre">python</span></code> or <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">which</span> <span class="pre">python3</span></code>. When I was setting this up, I noticed I was using the expected python interpreter when I called <code class="docutils literal notranslate"><span class="pre">python3</span></code> or <code class="docutils literal notranslate"><span class="pre">pip3</span></code>, but as soon as I ran <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">python3</span></code> or <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">pip3</span></code>, the python version was different. If this is confusing and you don’t know how to resolve it, please just follow the virtual environment tutorial I linked above to setup python &gt;=3.7 on your machine.</p>
-</div></blockquote>
-</li>
-<li><p><strong>Missing hardware permissions</strong></p>
-<blockquote>
-<div><p>If the <code class="docutils literal notranslate"><span class="pre">hardware_setup.py</span></code> script is returning a <code class="docutils literal notranslate"><span class="pre">no</span> <span class="pre">langid</span></code> error or similar, it is probably because your user doesn’t have permission to get certain information from the USB device. Try running this command with <code class="docutils literal notranslate"><span class="pre">sudo</span></code> (and, as noted above, make sure you are using the expected python version).</p>
-</div></blockquote>
-</li>
-</ul>
-</div>
-</div>
+<div class="section" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p>Welcome to the OlinHITL homepage! This project was built to enable Olin’s Formula SAE team to perform hardware-in-the-loop testing on their car. It isn’t quite a python library, and isn’t quite a full-fledged application; it lives somewhere in between. If you plan on using this project to write tests, we recommend developing tests inside this projects’ <code class="docutils literal notranslate"><span class="pre">tests</span></code> directory, but you by no means have to. As long as you follow the setup instructions on the setup page, you should be good to develop tests wherever.</p>
 </div>
 <div class="section" id="indices-and-tables">
 <h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>

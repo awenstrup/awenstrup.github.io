@@ -93,11 +93,11 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="usage/shell.html">The Shell</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usage/tests.html">Tests</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/roadkillharness.html">RoadkillHarness</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/cancontroller.html">CANController</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/iocontroller.html">IOController</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/ecu.html">ECU</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/utils.html">Utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hitl/roadkillharness.html">RoadkillHarness</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hitl/cancontroller.html">CANController</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hitl/iocontroller.html">IOController</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hitl/ecu.html">ECU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hitl/utils.html">Utils</a></li>
 </ul>
 
             
@@ -168,7 +168,7 @@
 <p>After the repository is installed and setup, a <code class="docutils literal notranslate"><span class="pre">config.ini</span></code> file should exist with a default configuration. That said, you may want/need to configure this your own preferences/needs. The <code class="docutils literal notranslate"><span class="pre">config.ini</span></code> file has 3 sections, detailed below.</p>
 <div class="section" id="logging">
 <h2>LOGGING<a class="headerlink" href="#logging" title="Permalink to this headline">¶</a></h2>
-<p>The logging sections outlines basic logging options. <strong>NOTE:</strong> <code class="docutils literal notranslate"><span class="pre">pytest</span></code> ignores these options in favor it its own <code class="docutils literal notranslate"><span class="pre">pytest.ini</span></code> file, so you may have to update those settings as well if you want to alter how <code class="docutils literal notranslate"><span class="pre">pytest</span></code> handles logging. You can also read their <a class="reference external" href="https://docs.pytest.org/en/stable/logging.html">pytest’s logging configuration documentation</a> for more information.</p>
+<p>The logging sections outlines basic logging options. <strong>NOTE:</strong> <code class="docutils literal notranslate"><span class="pre">pytest</span></code> ignores these options in favor it its own <code class="docutils literal notranslate"><span class="pre">pytest.ini</span></code> file, so you may have to update those settings as well if you want to alter how <code class="docutils literal notranslate"><span class="pre">pytest</span></code> handles logging. You can also read <a class="reference external" href="https://docs.pytest.org/en/stable/logging.html">pytest’s logging configuration documentation</a> for more information.</p>
 <p>You can also check out the <code class="docutils literal notranslate"><span class="pre">logging</span></code> documentation <a class="reference external" href="https://docs.python.org/3/library/logging.html">here</a> ; it goes over much of the information below in more detail</p>
 <dl class="simple">
 <dt>log_level:</dt><dd><p>This option specifies how verbose you want logging to be. The options are (in order) <code class="docutils literal notranslate"><span class="pre">CRITICAL</span></code>, <code class="docutils literal notranslate"><span class="pre">ERROR</span></code>, <code class="docutils literal notranslate"><span class="pre">WARNING</span></code>, <code class="docutils literal notranslate"><span class="pre">INFO</span></code> and <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code>. All logs of the specified order or higher (with <code class="docutils literal notranslate"><span class="pre">CRITICAL</span></code> being most important) will be logged.</p>

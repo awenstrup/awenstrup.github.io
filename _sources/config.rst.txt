@@ -5,7 +5,7 @@ After the repository is installed and setup, a ``config.ini`` file should exist 
 
 LOGGING
 ^^^^^^^
-The logging sections outlines basic logging options. **NOTE:** ``pytest`` ignores these options in favor it its own ``pytest.ini`` file, so you may have to update those settings as well if you want to alter how ``pytest`` handles logging. You can also read their `pytest's logging configuration documentation <https://docs.pytest.org/en/stable/logging.html>`_ for more information.
+The logging sections outlines basic logging options. **NOTE:** ``pytest`` ignores these options in favor it its own ``pytest.ini`` file, so you may have to update those settings as well if you want to alter how ``pytest`` handles logging. You can also read `pytest's logging configuration documentation <https://docs.pytest.org/en/stable/logging.html>`_ for more information.
 
 You can also check out the ``logging`` documentation `here <https://docs.python.org/3/library/logging.html>`_ ; it goes over much of the information below in more detail
 
