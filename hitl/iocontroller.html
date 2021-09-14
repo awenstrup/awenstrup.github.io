@@ -91,7 +91,7 @@
 <li class="toctree-l1"><a class="reference internal" href="roadkillharness.html">RoadkillHarness</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cancontroller.html">CANController</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">IOController</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#module-hitl.iocontroller">API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#api">API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#writing-pin-config-files">Writing pin config files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#setting-signals-simultaneously">Setting signals simultaneously</a></li>
 </ul>
@@ -165,99 +165,8 @@
             
   <div class="section" id="iocontroller">
 <h1>IOController<a class="headerlink" href="#iocontroller" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="module-hitl.iocontroller">
-<span id="api"></span><h2>API<a class="headerlink" href="#module-hitl.iocontroller" title="Permalink to this headline">¶</a></h2>
-<dl class="py class">
-<dt id="hitl.iocontroller.IOController">
-<em class="property">class </em><code class="sig-prename descclassname">hitl.iocontroller.</code><code class="sig-name descname">IOController</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pin_info_path</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">serial_path</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="headerlink" href="#hitl.iocontroller.IOController" title="Permalink to this definition">¶</a></dt>
-<dd><p>High level python object to interface with hardware.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">IOController</span></code> is used to set analog and digital pins for simulation. It
-is configured using a <code class="docutils literal notranslate"><span class="pre">.csv</span></code> file, documented below. It allows a user to interact
-with our custom hardware by getting and setting digital and analog states.</p>
-<p><a class="reference external" href="https://docs.olinelectricmotorsports.com/display/AE/IO+Controller">Confluence</a></p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>pin_info_path</strong> (<em>str</em>) – The path to the pin_info file (should be stored in <code class="docutils literal notranslate"><span class="pre">artifacts</span></code>).</p></li>
-<li><p><strong>serial_path</strong> (<em>str</em>) – The path to the serial device you are connecting to. If you are using
-an arduino and have run <code class="docutils literal notranslate"><span class="pre">scripts/hardware_setup.py</span></code>, then you should be able to use
-<code class="docutils literal notranslate"><span class="pre">/dev/arduino</span></code>. Otherwise, you might have to look for your device with <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">ls</span> <span class="pre">/dev/*</span></code></p></li>
-</ul>
-</dd>
-</dl>
-<dl class="py method">
-<dt id="hitl.iocontroller.IOController.get_state">
-<code class="sig-name descname">get_state</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pin</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; Union<span class="p">[</span>int<span class="p">, </span>float<span class="p">]</span><a class="headerlink" href="#hitl.iocontroller.IOController.get_state" title="Permalink to this definition">¶</a></dt>
-<dd><p>Request a hardware state from the HitL system.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>pin</strong> (<em>str</em>) – The name of the state we want to get (e.x. “THROTTLE_POT_1”, NOT 11)</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>Union[int, float]</p>
-</dd>
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>The value of the requested state. If the signal is analog, returns a <code class="docutils literal notranslate"><span class="pre">float</span></code>, otherwise an <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
-</dd>
-</dl>
-<dl>
-<dt>Message format:</dt><dd><p>2 bytes (all big endian):</p>
-<dl class="simple">
-<dt>Byte 0:</dt><dd><ul class="simple">
-<li><p>Bit 0: 0 (reserved bit)</p></li>
-<li><p>Bit 1: 0 (indicates a get request)</p></li>
-<li><p>Bits 2-7: Board number of the signal we want to get (0-63)</p></li>
-</ul>
-</dd>
-<dt>Byte 1:</dt><dd><ul class="simple">
-<li><p>Bits 0-7: Pin number of the signal we want to get</p></li>
-</ul>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="hitl.iocontroller.IOController.set_state">
-<code class="sig-name descname">set_state</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pin</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#hitl.iocontroller.IOController.set_state" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set the value of an IO pin in the HitL system</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>pin</strong> (<em>str</em>) – The name of the pin to update (e.x. THROTTLE_PEDAL_1)</p></li>
-<li><p><strong>value</strong> (<em>Union</em><em>[</em><em>int</em><em>,</em><em>float</em><em>]</em>) – The value to set the pin to (e.x. 2.5).
-Use 0 or 1 for digital, floating point voltage number for analog</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>None</p>
-</dd>
-</dl>
-<dl>
-<dt>Message format:</dt><dd><p>4 bytes (all big endian)</p>
-<dl class="simple">
-<dt>Byte 0:</dt><dd><ul class="simple">
-<li><p>Bit 0: 0 (reserved bit)</p></li>
-<li><p>Bit 1: 1 (indicates a set request)</p></li>
-<li><p>Bits 2-7: Board number of the signal we want to get (0-63)</p></li>
-</ul>
-</dd>
-<dt>Byte 1:</dt><dd><ul class="simple">
-<li><p>Bits 0-7: Pin number of the signal we want to set</p></li>
-</ul>
-</dd>
-<dt>Bytes 2-3:</dt><dd><ul class="simple">
-<li><p>Bits 0-15: 16 bit precision value to set, with 0% = 0x0000 and  100% = 0xFFFF</p></li>
-</ul>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+<div class="section" id="api">
+<h2>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="writing-pin-config-files">
 <h2>Writing pin config files<a class="headerlink" href="#writing-pin-config-files" title="Permalink to this headline">¶</a></h2>

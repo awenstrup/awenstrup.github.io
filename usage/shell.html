@@ -37,7 +37,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Tests" href="tests.html" />
-    <link rel="prev" title="Setup" href="../setup.html" /> 
+    <link rel="prev" title="Configuration" href="../config.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -85,13 +85,14 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../setup.html">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config.html">Configuration</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">The Shell</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tests.html">Tests</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../modules/roadkillharness.html">RoadkillHarness</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../modules/cancontroller.html">CANController</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../modules/iocontroller.html">IOController</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../modules/ecu.html">ECU</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../modules/utils.html">Utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hitl/roadkillharness.html">RoadkillHarness</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hitl/cancontroller.html">CANController</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hitl/iocontroller.html">IOController</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hitl/ecu.html">ECU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hitl/utils.html">Utils</a></li>
 </ul>
 
             
@@ -161,7 +162,7 @@
 <h1>The Shell<a class="headerlink" href="#the-shell" title="Permalink to this headline">¶</a></h1>
 <p>We haven’t built out a command line interface for interacting with our HITL system yet, but we think that the python shell works great! Just run the following commands:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python
-&gt;&gt;&gt; from modules.roadkillharness import RoadkillHarness
+&gt;&gt;&gt; from hitl.roadkillharness import RoadkillHarness
 &gt;&gt;&gt; harness = RoadkillHarness()
 </pre></div>
 </div>
@@ -169,12 +170,12 @@
 <ul>
 <li><p><cite>Getting a CAN state from the car</cite></p>
 <blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span> <span class="pre">harness.can.get_state(&quot;signalName&quot;)</span></code></p>
+<div><p><code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span> <span class="pre">harness.throttle.get_state(&quot;mcTorqueRequest&quot;)</span></code></p>
 </div></blockquote>
 </li>
 <li><p><cite>Setting a voltage on the car</cite></p>
 <blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span> <span class="pre">harness.io.set_state(&quot;SIGNAL_NAME&quot;,</span> <span class="pre">&quot;2.5&quot;)</span></code></p>
+<div><p><code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span> <span class="pre">harness.throttle.set_state(&quot;THROTTLE_POT_1&quot;,</span> <span class="pre">&quot;2.5&quot;)</span></code></p>
 </div></blockquote>
 </li>
 </ul>
@@ -192,7 +193,7 @@
         <a href="tests.html" class="btn btn-neutral float-right" title="Tests" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../setup.html" class="btn btn-neutral float-left" title="Setup" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../config.html" class="btn btn-neutral float-left" title="Configuration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
