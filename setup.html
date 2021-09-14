@@ -177,50 +177,29 @@
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic">
 <li><p>If you haven’t yet, clone this repository onto your computer:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/olin-electric-motorsports/AdvancedResearch.git
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/olin-electric-motorsports/olin-electric-motorsports.git
 </pre></div>
 </div>
 </li>
 <li><p>Install drivers for the FTDI chip from <a class="reference external" href="https://ftdichip.com/drivers/d2xx-drivers/">this website</a> and follow the instructions in the <code class="docutils literal notranslate"><span class="pre">ReadMe.rtf</span></code> file.</p></li>
 <li><p>To perform software installation and setup, navigate to the software directory:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd AdvancedResearch/hardware_in_the_loop/software
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd olin-electric-motorsports/projects/hitl/software
 </pre></div>
 </div>
 </li>
 <li><p>(Optional) If you want to setup a virtual environment for this project (I recommend it), now is the time. If you don’t know how to do this, read <a class="reference external" href="https://realpython.com/intro-to-pyenv/">this</a></p></li>
-<li><p>Use pip to install the project and its dependencies on your computer. If you usually use <code class="docutils literal notranslate"><span class="pre">pip3</span></code> to invoke <code class="docutils literal notranslate"><span class="pre">pip</span></code>, use that instead; as long as the actual version of <code class="docutils literal notranslate"><span class="pre">pip</span></code> is &gt;3.6.0, you should be fine.:</p>
+<li><p>Use pip to install the project and its dependencies on your computer. If you usually use <code class="docutils literal notranslate"><span class="pre">pip3</span></code> to invoke <code class="docutils literal notranslate"><span class="pre">pip</span></code>, use that instead; as long as the actual version of <code class="docutils literal notranslate"><span class="pre">pip</span></code> is &gt;3.7, you should be fine.:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install -e .
 </pre></div>
 </div>
 </li>
-<li><p>Now that the software is installed, it’s time to configure hardware. For now, the only hardware we can connect to is an arduino. Go ahead and plug that in now. If you don’t have an arduino, thats fine; you just won’t be able to run all unit tests.</p></li>
-<li><p>Now that your arduino is plugged in, verify that your computer recognizes it with:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>`$ lsusb`
-</pre></div>
-</div>
-</li>
-</ol>
-<p>You should see a your arduino listed as an option. If you don’t <strong>do not</strong> proceed to step 6; try unplugging it and plugging it in again.</p>
-<ol class="arabic" start="7">
-<li><p>Navigate to our <code class="docutils literal notranslate"><span class="pre">scripts</span></code> directory and run our hardware setup script:</p>
+<li><p>Now that the software is installed, it’s time to configure hardware. Navigate to our <code class="docutils literal notranslate"><span class="pre">scripts</span></code> directory and run our hardware setup script:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd scripts &amp;&amp; sudo python hardware_setup.py
 </pre></div>
 </div>
 </li>
 </ol>
-<p>This script creates a udev rule which generates a permanent symbolic link to your arduino at <code class="docutils literal notranslate"><span class="pre">/dev/arduino</span></code>, so we never need to guess where to find it. The software defaults to these symbolic links if they are not specified in <code class="docutils literal notranslate"><span class="pre">config.ini</span></code>.</p>
-<ol class="arabic" start="8">
-<li><p>Restart your computer.:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo shutdown -r now
-</pre></div>
-</div>
-</li>
-</ol>
-<p>It is generally recommended to restart to reload udev rules. If you’re in a rush, you can try:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo udevadm control --reload-rules
-</pre></div>
-</div>
-<p>but I generally recommend restarting just to be sure.</p>
+<p>This script installs some linux kernel modules required to interface with CAN hardware.</p>
 </div>
 <div class="section" id="common-issues">
 <h2>Common issues<a class="headerlink" href="#common-issues" title="Permalink to this headline">¶</a></h2>
